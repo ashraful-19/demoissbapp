@@ -1,0 +1,49 @@
+<%- include('../partials/header.ejs') %>
+
+<section class="tab-content">
+  <div class="con tab-con1">
+    <ul class="grad">
+      <li>
+        <div class="day">
+          &nbsp;&nbsp;
+          <h6 class="mid-align"><%- data.heading %></h6>
+        </div>
+      </li>
+    </ul>
+
+    <br />
+
+
+
+    
+
+ 
+    <div class="qcontainer">
+      <% for(let i =1; i<=data.model; i++){ %>
+        <ul class="iqlistbar">
+          <li>
+            <a
+              href="/iqlist/verbal?category=verbal&model=<%= i %>
+              "
+            >
+            <img
+              src="https://static.thenounproject.com/png/1088380-200.png"
+              class="iqlisticon"
+            />
+          </li>
+          <li><span class="iqlisttext"><%- data.heading %> <%- i %></span></li>
+        </a>
+        </ul>
+  
+  
+      <% } %>
+  
+    
+  </div>
+</section>
+
+<br /><br /><br />
+<br />
+<br />
+
+<%- include('../partials/bottom-nav.ejs') %>

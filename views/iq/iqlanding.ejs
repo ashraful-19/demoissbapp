@@ -1,0 +1,228 @@
+<%- include('../partials/header.ejs') %>
+
+<!-- easynavigation click er pore jno easily move korte -->
+<script>
+  $(document).ready(function () {
+    $("p").click(function (event) {
+      event.preventDefault(); //stops browser updating url
+      var id = $(this).attr("id");
+
+      var divPosition = $(id).offset().top;
+      $("html, body").animate({ scrollTop: divPosition - 250 }, 1000);
+    });
+  });
+</script>
+
+<!-- easynavigation er jnno color marking   -->
+
+<script>
+  function colorChange(value) {
+    //defines sayHello inside the .ready() method
+
+    $("." + value).css({ "background-color": "rgb(197, 255, 223)" });
+  }
+</script>
+<!-- explanation er jnno toggle jquery -->
+<script>
+  function colorChange(value) {
+    //defines sayHello inside the .ready() method
+
+    $("." + value).css({ "background-color": "rgb(197, 255, 223)" });
+  }
+  $(document).ready(function () {
+    $("slideToggle").click(function () {
+      $("#box").slideToggle();
+    });
+  });
+</script>
+
+<!-- explanation slide updown -->
+<script>
+  function slideToggle(value) {
+    console.log(value);
+
+    $("." + value).slideToggle();
+  }
+</script>
+
+<div class="top-nav">
+  <div class="top-bottom">
+    <img
+      src="https://cdn.iconscout.com/icon/free/png-256/back-arrow-1767523-1502427.png"
+      class="icon-back"
+    />
+    <div>
+      <img
+        src="https://candidatelogin.issb-bd.org/asset/img/logonew.png"
+        class="icon-dp"
+      />
+    </div>
+  </div>
+</div>
+
+<div class="questions-box">
+  <div class="question-box">
+    <div class="answers-box">
+      <div class="answers">
+        <div class="qcontainer">
+          <div>
+            <p><b>Questions Navigation</b></p>
+          </div>
+
+          <div class="easynav">
+            <% for(let i =1; i<= count; i++){ %>
+            <p id="#IQ<%= i %>" class="IQ<%= i %>"><%= i %></p>
+            <% } %>
+          </div>
+        </div>
+        <br />
+        <form action="/resultiq" method="post" id="form-id">
+          <div class="left-1">
+            <input
+              type="text"
+              id="countdown1"
+              hidden
+              name="countdown"
+              value=""
+            />
+            <% if(locals.content) {%> <% content.forEach(function(question, i){
+            %>
+            <div class="qcontainer" id="IQ<%= i+1 %>">
+              <p>
+                <span><b><%= i+1 %>)&nbsp;</b></span>
+
+                <b><%= question.question%> </b>
+              </p>
+              <img id="iqpic" src="/images/<%= question.imageIq %>" alt="" />
+              <br />
+
+              <input
+                type="radio"
+                id="option"
+                name="<%= question._id %>"
+                value="a"
+                class="IQ<%= i+1 %>"
+                onclick='colorChange("IQ<%= i+1 %>")'
+              />
+
+              <label for="question01"><%= question.option1 %></label>
+              <br />
+
+              <input
+                type="radio"
+                id="option"
+                name="<%= question._id %>"
+                value="b"
+                class="IQ<%= i+1 %>"
+                onclick='colorChange("IQ<%= i+1 %>")'
+              />
+              <label for="option"><%= question.option2 %></label>
+              <br />
+
+              <input
+                type="radio"
+                id="option3"
+                name="<%= question._id %>"
+                value="IQ<%= i+1 %>"
+                class="IQ<%= i+1 %>"
+                onclick='colorChange("IQ<%= i+1 %>")'
+              />
+              <label for="option3"><%= question.option3 %></label>
+              <br />
+
+              <input
+                type="radio"
+                id="option4"
+                name="<%= question._id %>"
+                value="d"
+                class="IQ<%= i+1 %>"
+                onclick='colorChange("IQ<%= i+1 %>")'
+              />
+              <label for="option4"><%= question.option4 %></label>
+              <input
+                hidden
+                checked
+                type="radio"
+                name="<%= question._id %>"
+                value="0"
+                class="IQ<%= i+1 %>"
+              />
+
+              <br />
+              <br />
+              <div
+                class="explain slide<%= i+1 %>"
+                onclick='slideToggle("slideToggle<%= i+1 %>")'
+              >
+                <p>Explanation</p>
+              </div>
+
+              <div class="explain">
+                <a href="/dashboard/iq_admin/edit/<%= question._id %>"
+                  ><p>Doubt</p></a
+                >
+              </div>
+
+              <br />
+              <p class="slideToggle<%= i+1 %> hideExplain">
+                <%= question.explanation %>
+              </p>
+            </div>
+
+            <% });%> <%}%>
+          </div>
+          <br />
+
+          <input class="submit" type="submit" value="Finished" />
+          <div class="easynav">
+            <% for(let i =1; i<= count; i++){ %>
+            <p id="#IQ<%= i %>" class="IQ<%= i %>"><%= i %></p>
+            <% } %>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<br /><br /><br /><br /><br />
+<div class="timer">
+  <span id="countdown"></span>
+  <img
+    style="width: 20px"
+    src="https://cdn-icons-png.flaticon.com/512/610/610073.png"
+    class="icon"
+    alt=""
+  />
+</div>
+
+<script>
+  let startingTime = 3;
+  let time = startingTime * 60; //minutes * 60 seconds
+  let refreshIntervalId = setInterval(updateCountdown, 1000); //update every 1 second
+
+  function updateCountdown() {
+    const minutes = Math.floor(time / 60); // rounds a number DOWN to the nearest integer
+    let seconds = time % 60;
+
+    seconds = seconds < 10 ? "0" + seconds : seconds;
+    const contdownEl = document.getElementById("countdown");
+    if (minutes >= 1) {
+      contdownEl.innerHTML = `${minutes} min : ${seconds} sec`;
+      document.getElementById("countdown1").value = time;
+    } else {
+      contdownEl.innerHTML = `${seconds} sec`;
+      document.getElementById("countdown1").value = time;
+    }
+    time--;
+
+    if (time < 0) {
+      //stop the setInterval whe time = 0 for avoid negative time
+      clearInterval(refreshIntervalId);
+      document.getElementById("countdown1").value = time + 1;
+      document.getElementById("form-id").submit();
+    }
+  }
+</script>
+
+<%- include('../partials/bottom-nav.ejs') %>

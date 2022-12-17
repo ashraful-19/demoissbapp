@@ -1,0 +1,129 @@
+<%- include('../partials/dashboard-nav.ejs') %>
+      
+      <div class="left-side">
+          <div class="left-1">
+            <h1>Update Questions Here </h1>
+            <br />
+
+            
+              <h2>hello  </h2>
+           
+
+            <form action="/dashboard/iq_admin/update/<%- contents._id %>" method="POST">
+              <p>Model Test:</p>
+              <select name="category" class="lname" id="select_selector">
+                <option value="IQM1">Model Test 01</option>
+                <option value="IQM2">Model Test 02</option>
+                <option value="IQM3">Model Test 03</option>
+                <option value="IQM4">Model Test 04</option>
+              </select>
+
+            
+              
+              
+              <br>
+              <br>
+              
+              <p>Question Type:</p>
+              <select name="type" class="lname" id="selected_selector1">
+                <option value="Jumble Words">Jumble Words</option>
+                <option value="Letter Difference">Letter Difference</option>
+                <option value="True or False">True or False</option>
+                <option value="Analogical">Analogical</option>
+              </select>
+              <br />
+              <label for="qname">Question:</label>
+              <input
+                class="lname"
+                type="text"
+                id="qname"
+                name="qname"
+                autocompete="off"
+                value="<%- contents.question %>"
+              />
+              <br />
+            
+              <label for="opt1">Option A:</label>
+
+              <input
+                class="lname"
+                type="text"
+                id="opt1"
+                name="opt1"
+                autocomplete="off"
+                value="<%- contents.option1 %>"
+              />
+              <input type="radio" name="answer" value="a" />
+              <br />
+              <label for="opt2">Option B:</label>
+
+              <input
+                class="lname"
+                type="text"
+                id="opt2"
+                name="opt2"
+                autocompete="off"
+                value="<%- contents.option2 %>"
+              />
+              <input type="radio" name="answer" value="b" />
+              <br />
+              <label for="opt3">Option C:</label>
+
+              <input
+                class="lname"
+                type="text"
+                id="opt3"
+                name="opt3"
+                autocompete="off"
+                value="<%- contents.option3 %>"
+              />
+              <input type="radio" name="answer" value="c" />
+              <br />
+              <label for="opt4">Option D:</label>
+
+              <input
+                class="lname"
+                type="text"
+                id="opt4"
+                name="opt4"
+                autocompete="off"
+                value="<%- contents.option4 %>"
+              />
+              <input type="radio" name="answer" value="d" />
+              <br />
+              <label for="opt4">Explanation</label>
+
+              <input
+                class="lname"
+                type="text"
+                id="explanation"
+                name="explanation"
+                autocompete="off"
+                value="<%- contents.explanation %>"
+              />
+              <input type="submit" value="Update" id="button" />
+            </form>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      
+    </div>
+  </body>
+  <script>
+    // $('.selected option[value= "<%- contents.category %>"]').attr('selected','selected');
+  
+
+$("#select_selector option:selected").removeAttr("selected");
+$("#select_selector option[value='<%- contents.category %>']").attr('selected', 'selected'); 
+$("#selected_selector1 option:selected").removeAttr("selected");
+$("#selected_selector1 option[value='<%- contents.type %>']").attr('selected', 'selected'); 
+
+$('input:radio[value="<%- contents.right_answer %>"]').prop('checked', true);
+
+
+  </script>
+ 
+</html>

@@ -1,0 +1,171 @@
+<%- include('../partials/dashboard-nav.ejs') %>
+      
+      <div class="left-side">
+          <div class="left-1">
+            <h1>Insert Questions Here</h1>
+            <br />
+
+            <form action="/dashboard/iq_admin" method="POST" enctype="multipart/form-data">
+              <p>Model Test:</p>
+              <select name="category" class="lname" value="IQM3">
+                <option value="IQM1">Model Test 01</option>
+                <option value="IQM2">Model Test 02</option>
+                <option value="IQM3">Model Test 03</option>
+                <option value="IQM4">Model Test 04</option>
+              </select>
+              
+              <br>
+              <br>
+              
+              <p>Question Type:</p>
+              <select name="type" class="lname">
+                <option value="Jumble Words">Jumble Words</option>
+                <option value="Letter Difference">Letter Difference</option>
+                <option value="True or False">True or False</option>
+                <option value="Analogical">Analogical</option>
+              </select>
+              <br />
+              <label for="qname">Question:</label>
+              <input
+                class="lname"
+                type="text"
+                id="qname"
+                name="qname"
+                autocompete="off"
+              />
+              <br />
+              <label for="image">Image:</label>
+              <input class="lname" type="file" id="image" name="avatar" />
+              <br />
+              <label for="opt1">Option A:</label>
+
+              <input
+                class="lname"
+                type="text"
+                id="opt1"
+                name="opt1"
+                autocomplete="off"
+              />
+              <input type="radio" name="answer" value="a" />
+              <br />
+              <label for="opt2">Option B:</label>
+
+              <input
+                class="lname"
+                type="text"
+                id="opt2"
+                name="opt2"
+                autocompete="off"
+              />
+              <input type="radio" name="answer" value="b" />
+              <br />
+              <label for="opt3">Option C:</label>
+
+              <input
+                class="lname"
+                type="text"
+                id="opt3"
+                name="opt3"
+                autocompete="off"
+              />
+              <input type="radio" name="answer" value="c" />
+              <br />
+              <label for="opt4">Option D:</label>
+
+              <input
+                class="lname"
+                type="text"
+                id="opt4"
+                name="opt4"
+                autocompete="off"
+              />
+              <input type="radio" name="answer" value="d" />
+              <br />
+              <label for="opt4">Explanation</label>
+
+              <input
+                class="lname"
+                type="text"
+                id="explanation"
+                name="explanation"
+                autocompete="off"
+              />
+              <input type="submit" value="Save" id="button" />
+            </form>
+          </div>
+          <div class="left-1">
+            <p><b>Added Questions:</b></p>
+            <br />
+            <% if(locals.content) {%> <% content.forEach(question => {%>
+            <div class="qcontainer">
+              <p>
+                <b><%= question.question%> </b>
+              </p>
+              <img id="iqpic" src="/images/<%= question.imageIq %>" alt="" />
+              <br />
+
+              <input
+                type="radio"
+                id="quesiton01"
+                name="<%= question._id %>"
+                value="1"
+              />
+
+              <label for="question01"><%= question.option1 %></label>
+              <br />
+
+              <input
+                type="radio"
+                id="quesiton02"
+                name="<%= question._id %>"
+                value="2"
+              />
+              <label for="question02"><%= question.option2 %></label>
+              <br />
+
+              <input
+                type="radio"
+                id="quesiton03"
+                name="<%= question._id %>"
+                value="3"
+              />
+              <label for="question03"><%= question.option3 %></label>
+              <br />
+
+              <input
+                type="radio"
+                id="quesiton04"
+                name="<%= question._id %>"
+                value="4"
+              />
+              <label for="question04"><%= question.option4 %></label>
+              <br />
+              <br />
+              <div class="explain">
+                <p>Explanation</p>
+              </div>
+
+              <div class="explain">
+                <a href="/dashboard/iq_admin/edit/<%= question._id %>"><p>Edit</p></a>
+              </div>
+              <div class="explain">
+                <a href="/dashboard/iq_admin/<%= question._id %>"><p>Delete</p></a>
+              </div>
+              <br />
+              <br />
+
+              <p><%= question.explanation %></p>
+              <br />
+            </div>
+           
+            <br />
+            <%})%> <%}%>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      
+    </div>
+  </body>
+</html>

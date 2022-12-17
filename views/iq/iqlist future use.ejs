@@ -1,0 +1,58 @@
+<%- include('../partials/header.ejs') %>
+
+<section class="tab-content">
+  <div class="con tab-con1">
+    <ul class="grad">
+      <li>
+        <div class="day">
+          &nbsp;&nbsp;
+          <h6 class="mid-align">Verbal IQ Test</h6>
+        </div>
+      </li>
+    </ul>
+
+    <br />
+    <ul class="collapsible no-shadows iqlistbar">
+      <li class="iqlistbar">
+        <img src="https://iili.io/HFycCKB.th.png" class="iqlisticon" />
+        <span class="iqlisttext">&nbsp;&nbsp;Verbal IQ Test 01</span>
+      </li>
+    </ul>
+    <ul class="collapsible no-shadows iqlistbar">
+      <li class="iqlistbar">
+        <img src="https://iili.io/HFycCKB.th.png" class="iqlisticon" />
+        <span class="iqlisttext">&nbsp;&nbsp;Verbal IQ Test 01</span>
+      </li>
+    </ul>
+    <ul class="collapsible no-shadows iqlistbar">
+      <li class="iqlistbar">
+        <img src="https://iili.io/HFycCKB.th.png" class="iqlisticon" />
+        <span class="iqlisttext">&nbsp;&nbsp;Verbal IQ Test 01</span>
+      </li>
+    </ul>
+  </div>
+</section>
+<section class="question-container">
+  <form action="/iqlist" method="POST">
+    <p>Question</p>
+    <input type="text" name="Question" />
+    <p>Option 1</p>
+    <input type="text" name="option1" />
+    <p>Option 2</p>
+    <input type="text" name="option2" />
+    <p>Option 3</p>
+    <input type="text" name="option3" />
+    <p>Option 4</p>
+    <input type="text" name="option4" />
+    <p>Right Answer</p>
+    <input type="text" name="right_answer" />
+    <p>Explanation</p>
+    <input type="text" name="explanation" />
+    <input type="submit" value="submit" />
+  </form>
+</section>
+<br /><br /><br />
+<br />
+<br />
+
+<%- include('../partials/bottom-nav.ejs') %>

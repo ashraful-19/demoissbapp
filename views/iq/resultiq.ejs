@@ -1,0 +1,119 @@
+<%- include('../partials/header.ejs') %>
+
+<!-- <script>
+    let userValue = [<%= Object.values(answer) %>];
+    let databaseValue = <%- content %>;
+
+
+
+    // console.log(userValue);
+    // console.log(databaseValue);
+  for(let i= 0; i>24;i++){
+    if(userValue['i'] == databaseValue['i'].right_answer){
+
+      console.log('Im right answer');
+    }else{
+
+      console.log('Im right answer');
+    }
+  }
+</script> -->
+
+<!-- <p><%= Object.values(answer) %></p>
+<p><%= content %></p> -->
+
+<h1>Given EXAM RESULT</h1>
+<p>Right: <%- result.right %></p>
+<p>wrong: <%- result.wrong %></p>
+<p>No Answer: <%- result.no_answer %></p>
+<p>Total Time: <%- result.time %></p>
+<!-- <% if(locals.answer) {%> <% Object.keys(answer).forEach(function(key){ %>
+<h1>Total Time: <%= answer[key] %></h1>
+<% });%> <%}%> -->
+<button><a href="/iqlist"> Take another Test</a></button>
+<div>
+  <form>
+    <div class="left-1">
+      <% if(locals.content) {%> <% content.forEach(function(question, i){ %>
+      <div class="qcontainer" id="IQ<%= i+1 %>">
+        <p>
+          <span><b><%= i+1 %>)&nbsp;</b></span>
+
+          <b><%= question.question%> </b>
+        </p>
+        <img id="iqpic" src="/images/<%= question.imageIq %>" alt="" />
+        <br />
+
+        <input
+          type="radio"
+          id="option"
+          name="<%= question._id %>"
+          class="a<%= i+1 %>"
+          value="a"
+        />
+        <label for="question01"><%= question.option1 %></label>
+        <br />
+
+        <input
+          type="radio"
+          id="option"
+          name="<%= question._id %>"
+          class="b<%= i+1 %>"
+          value="b"
+        />
+        <label for="option"><%= question.option2 %></label>
+        <br />
+
+        <input
+          type="radio"
+          id="option3"
+          name="<%= question._id %>"
+          class="c<%= i+1 %>"
+          value="c"
+        />
+        <label for="option3"><%= question.option3 %></label>
+        <br />
+
+        <input
+          type="radio"
+          id="option4"
+          name="<%= question._id %>"
+          class="d<%= i+1 %>"
+          value="d"
+        />
+        <label for="option4"><%= question.option4 %></label>
+
+        <input
+          hidden
+          checked
+          type="radio"
+          id="option4"
+          name="<%= question._id %>"
+          value="0"
+        />
+
+        <br />
+        <br />
+        <div class="explain">
+          <p>Explanation</p>
+        </div>
+
+        <div class="explain">
+          <a href="/dashboard/iq_admin/edit/<%= question._id %>"
+            ><p>Doubt</p></a
+          >
+        </div>
+
+        <br />
+        <br />
+        <p><%= question.explanation %></p>
+      </div>
+
+      <br />
+      <% });%> <%}%>
+    </div>
+    <br />
+  </form>
+</div>
+
+<%- include('../partials/bottom-nav.ejs') %>

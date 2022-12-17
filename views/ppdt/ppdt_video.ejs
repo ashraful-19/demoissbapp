@@ -1,0 +1,78 @@
+<%- include('../partials/header.ejs') %>
+	
+
+
+
+<div class="container"> 
+	<iframe 
+	id="videolink"
+	allow="accelerometer; autoplay=1;";
+	class="responsive-iframe" src="https://www.youtube.com/embed/tgbNymZ7vqY?rel=0&controls=0"></iframe>
+  </div>
+<br>
+	<div class="left-1">
+	 
+	  <% if(locals.content) { content.forEach(Content => {
+	  if(Content.type=="video"){%>
+	  <div class="qcontainer">
+		<div
+		  onclick="changeVideo('<%= Content.link %>')" >
+		  <%= Content.title %>
+		</div>
+	  </div>
+	  <%} else if (Content.type=="exam"){%>
+	  <div class="qcontainer">
+		<a href="<%= Content.link %>"><%= Content.title %></a>
+	  </div>
+	  <%} else {%>
+	  <div class="qcontainer">
+		<a href="<%= Content.link %>"><%= Content.title %></a>
+	  </div>
+	  <%}})%> <%}%>
+	</div>
+
+<br><br><br>
+</div>
+</body>
+<script>
+let a;
+function changeVideo(a) {
+console.log(a);
+let imgDiv = document.getElementById("videolink");
+imgDiv.src = a; // replace the image on button click.
+}
+</script>
+
+
+
+
+	
+
+
+<style>
+	.container {
+	  position: relative;
+	  width: 100%;
+	  overflow: hidden;
+	  padding-top: 62.5%; /* 8:5 Aspect Ratio */
+	}
+	
+	.responsive-iframe {
+	  position: absolute;
+	  top: 0;
+	  left: 0;
+	  bottom: 0;
+	  right: 0;
+	  width: 100%;
+	  height: 100%;
+	  border: none;
+	}
+	.ytp-overflow-icon{
+
+	  display: none !important;
+	}
+	</style>
+
+
+
+<%- include('../partials/bottom-nav.ejs') %>
